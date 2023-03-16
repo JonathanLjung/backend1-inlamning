@@ -1,0 +1,15 @@
+{
+  "name": "backend1-inlamning",
+  "version": "1.0.0",
+  "description": "Skapa en .env fil och kopiera in detta. Se till så att alla uppgifter är korrekta.",
+  "main": "config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "git": "^0.1.5"
+  }
+}
