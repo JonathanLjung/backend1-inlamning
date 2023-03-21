@@ -13,14 +13,16 @@ const postTodos = (req, res) => {
     INSERT INTO todos (user_id, title, description)
     VALUES (?, ?, ?)`;
 
-  pool.execute(insertTodo, [user_id, title, description], (error, result) => {
-    if (error) {
-      console.log(error);
-      res.sendStatus(500);
-    } else {
-      res.status(201).json("Todo added.");
-    }
-  });
+  if (user_id !== undefined) {
+    pool.execute(insertTodo, [user_id, title, description], (error, result) => {
+      if (error) {
+        console.log(error);
+        res.sendStatus(500);
+      } else {
+        res.status(201).json("Todo added.");
+      }
+    });
+  }
 };
 
 module.exports = { postTodos };

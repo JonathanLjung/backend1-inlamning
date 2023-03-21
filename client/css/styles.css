@@ -5,13 +5,12 @@
 }
 
 body {
-    background-color: rgb(240, 240, 240);
-    color: rgb(40, 40, 40);
+    background-color: rgb(122, 122, 122);
 }
 
 a {
     text-decoration: none;
-    color: rgb(40, 40, 40);
+    color: white;
 }
 
 a:hover {
@@ -34,10 +33,9 @@ form {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: white;
+    background-color: rgb(122, 122, 122);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -46,6 +44,7 @@ h1 {
     align-items: center;
     margin-top: 20px;
     font-size: 2.5em;
+    color: white;
 }
 
 h2 {
@@ -54,6 +53,11 @@ h2 {
     align-items: center;
     margin-top: 10px;
     font-size: 1.8em;
+    color: white;
+}
+
+#todoForm {
+    color: white;
 }
 
 .todoItem {

@@ -1,13 +1,13 @@
 const { pool } = require('../../db');
 
 const deleteTodos = (req, res) => {
-  const userId = req.userId;
+  const user_id = req.userId;
   const todoId = req.params.id;
 
   const deleteTodo = `
     DELETE FROM todos WHERE id = ? AND user_id = ?`;
 
-  pool.execute(deleteTodo, [todoId, userId], (error, result) => {
+  pool.execute(deleteTodo, [todoId, user_id], (error, result) => {
     if (error) {
       console.log(error);
       res.sendStatus(500);

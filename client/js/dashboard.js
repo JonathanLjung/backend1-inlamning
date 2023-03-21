@@ -161,13 +161,14 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        console.log("To-do tillagd");
+        console.log("Todo added succesfully");
         document.getElementById("title").value = "";
         document.getElementById("description").value = "";
 
         fetchAndDisplayTodos();
       } else {
         console.log("Användaren är inte inloggad");
+        alert("Du måste vara inloggad för att publicera todos. Vänligen logga in");
       }
     });
   }
