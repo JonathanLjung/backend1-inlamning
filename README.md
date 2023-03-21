@@ -1,12 +1,14 @@
 # Jonathan Ljung Inlämning
 
+Börja med att starta databasen i MYSQL. 
+
 ## Hur du använder
 
 Skapa en .env fil och kopiera in detta. Se till så att alla uppgifter är korrekta. 
 
 ```
 DATABASE_USER="root"
-DATABASE_PASSWORD="StrongPassword123"
+DATABASE_PASSWORD=""
 DATABASE_HOST="127.0.0.1"
 DATABASE_DATABASE="todo"
 ```
@@ -15,7 +17,7 @@ DATABASE_DATABASE="todo"
 
 ``` 
 npm install
-npm run dev
+npm run server
 ```
 
 ## Routes
@@ -70,4 +72,10 @@ Här uppdaterar du din todos "complete", 1 för sant och 0 för falskt:
 ```
 ## För att använda clienten
 
+```
+npm run client
+```
 
+## Navigera på hemsidan
+
+Nu är det bara att navigera på hemsidan, du behöver först registrera dig för att sedan kunna logga in. Och därefter blir du dirigerad till dashboard, där du kan lägga till, ta bort, klarmarkera samt redigera dina todos. Dessa sparas i en MYSQL databas.

@@ -61,13 +61,14 @@ h2 {
 }
 
 .todoItem {
-    background-color: white;
+    background-color: rgb(172, 169, 169);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
     position: relative;
     transition: 0.2s;
+    color: black;
 }
 
 .todoItem:hover {
@@ -158,5 +159,13 @@ button:last-child {
 }
 
 #startsidaLink {
+    color: white;
+}
+
+#login-form {
+    color: white;
+}
+
+#register-form {
     color: white;
 }
