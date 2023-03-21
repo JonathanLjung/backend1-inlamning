@@ -2,7 +2,7 @@ const { pool } = require('../../db');
 
 const postTodos = (req, res) => {
   const { title, description } = req.body;
-  const user_id = req.user.userId;
+  const user_id = req.userId;
 
   if (!user_id) {
     res.status(401).json("Användaren är inte inloggad");
