@@ -12,7 +12,7 @@ const postTodos = (req, res) => {
   const user_id = req.userId;
 
   if (!user_id) {
-    res.status(401).json("Användaren är inte inloggad");
+    res.status(401).json("User is not logged in");
     return;
   }
 
