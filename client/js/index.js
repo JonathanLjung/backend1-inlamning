@@ -15,7 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
   
         if (response.ok) {
-            window.location.href = "http://localhost:5500/client/html/dashboard.html";
+          window.location.href = "http://localhost:5500/client/html/dashboard.html";
+        } else if (response.status === 400) {
+          const { error } = await response.json();
+          alert(error);
         } else {
           alert("Fel användarnamn eller lösenord");
         }
@@ -33,11 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify({ username, password }),
           credentials: "include",
         });
-  
+    
         if (response.ok) {
           alert("Registrerad!");
+        } else if (response.status === 400) {
+          const { error } = await response.json();
+          alert(error);
+        } else if (response.status === 409) {
+          const { error } = await response.json();
+          alert(error);
         } else {
-          alert("Användarnamnet finns redan");
+          alert("Något gick fel, försök igen senare.");
         }
       });
     }
