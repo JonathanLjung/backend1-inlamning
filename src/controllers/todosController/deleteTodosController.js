@@ -25,9 +25,9 @@ const deleteTodos = (req, res) => {
       console.log(error);
       res.sendStatus(500);
     } else if (result.affectedRows === 0) {
-      res.status(404).json("Ingen todo hittades att ta bort");
+      res.status(404).json("No todo was found");
     } else {
-      res.status(200).json("Din todo är nu borttagen");
+      res.status(200).json("Your todo was removed successfully");
     }
   });
 };

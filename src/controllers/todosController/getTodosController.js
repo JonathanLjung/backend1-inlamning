@@ -23,7 +23,7 @@ const getTodos = (req, res) => {
   pool.execute(getTodosQuery, [user_id], (error, result) => {
     if (error) {
       console.log(error);
-      res.status(500).json("Ett internt fel uppstod");
+      res.status(500).json("Couldnt get todos");
     } else {
       res.status(200).json(result);
     }

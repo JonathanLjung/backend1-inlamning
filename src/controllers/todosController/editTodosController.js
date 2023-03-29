@@ -29,7 +29,7 @@ const editTodos = (req, res) => {
     } else if (result.affectedRows === 0) {
       res.status(404).json({ error: "Todo not found" });
     } else {
-      res.status(200).json("Din todo är nu uppdaterad");
+      res.status(200).json("Your todo has been updated");
     }
   });
 };

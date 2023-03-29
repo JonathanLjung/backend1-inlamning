@@ -32,7 +32,7 @@ const completeTodos = (req, res) => {
         console.log(error);
         res.sendStatus(500);
       } else if (result.affectedRows === 0) {
-        res.status(404).json({ error: "Couldnt find todo" });
+        res.status(404).json({ error: "No todo was found" });
       } else {
         res.json({ success: true });
       }

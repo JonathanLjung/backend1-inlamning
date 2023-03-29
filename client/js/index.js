@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const { error } = await response.json();
           alert(error);
         } else {
-          alert("Fel användarnamn eller lösenord");
+          alert("Wrong username or password");
         }
       });
     }
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     
         if (response.ok) {
-          alert("Registrerad!");
+          alert("Registered!");
         } else if (response.status === 400) {
           const { error } = await response.json();
           alert(error);
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const { error } = await response.json();
           alert(error);
         } else {
-          alert("Något gick fel, försök igen senare.");
+          alert("An error occured, please try again later");
         }
       });
     }

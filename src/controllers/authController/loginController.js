@@ -9,18 +9,18 @@ const schema = joi.object({
     .max(25)
     .required()
     .messages({
-      "string.min": "Användarnamnet måste vara minst 3 tecken",
-      "string.max": "Användarnamnet får inte vara längre än 25 tecken",
-      "any.required": "Användarnamn är obligatoriskt",
+      "string.min": "Username must contain atleast 3 characters",
+      "string.max": "Username cannot exceed 25 characters",
+      "any.required": "Username is mandatory",
     }),
   password: joi.string()
     .min(6)
     .max(30)
     .required()
     .messages({
-      "string.min": "Lösenordet måste vara minst 6 tecken",
-      "string.max": "Lösenordet får inte vara längre än 30 tecken",
-      "any.required": "Lösenord är obligatoriskt",
+      "string.min": "Password must contain atleast 6 characters",
+      "string.max": "Password cannot exceed 30 characters",
+      "any.required": "Password is mandatory",
     }),
 });
 
@@ -42,7 +42,7 @@ const login = (req, res) => {
       console.log(error);
       res.sendStatus(500);
     } else if (result.length === 0) {
-      res.status(401).json({ error: "Fel användarnamn eller lösenord" });
+      res.status(401).json({ error: "Wrong username or password" });
     } else {
       const userId = result[0].id;
       const storedPassword = result[0].password;
@@ -52,7 +52,7 @@ const login = (req, res) => {
           console.log(err);
           res.sendStatus(500);
         } else if (!isMatch) {
-          res.status(401).json({ error: "Fel användarnamn eller lösenord" });
+          res.status(401).json({ error: "Wrong username or password" });
         } else {
           res.cookie(
             "loginCookie",
@@ -62,7 +62,7 @@ const login = (req, res) => {
               httpOnly: true,
             }
           );
-          res.status(200).json("Du är nu inloggad");
+          res.status(200).json("You're now logged in");
         }
       });
     }
