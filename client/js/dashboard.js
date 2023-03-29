@@ -30,6 +30,9 @@ async function editTodo(todoId, updatedData) {
     if (response.ok) {
       console.log("Todo updated successfully");
       fetchAndDisplayTodos();
+    } else if (response.status === 400) {
+      const { error } = await response.json();
+      alert(`Valideringsfel: ${error}`);
     } else {
       throw new Error("Error updating todo");
     }
@@ -47,7 +50,7 @@ async function toggleComplete(todoId, isComplete) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ isComplete }),
+        body: JSON.stringify({ isComplete: isComplete }),
         credentials: "include",
       }
     );
@@ -78,6 +81,18 @@ async function fetchAndDisplayTodos() {
     }
   } catch (error) {
     console.error(error.message);
+    let response;
+    try {
+      response = await fetch("http://localhost:5050/todos", {
+        method: "GET",
+        credentials: "include",
+      });
+    } catch (e) {
+      console.error(e.message);
+    }
+    if (error.message === "Error fetching todos" && response?.status === 401) {
+      alert("Du måste vara inloggad för att hämta todos. Vänligen logga in");
+    }
   }
 }
 
@@ -96,12 +111,12 @@ function createTodoItem(todo) {
   todoItem.className = "todoItem";
 
   const title = document.createElement("h3");
-title.textContent = todo.title;
-title.className = "title";
+  title.textContent = todo.title;
+  title.className = "title";
 
-const description = document.createElement("p");
-description.textContent = todo.description;
-description.className = "description";
+  const description = document.createElement("p");
+  description.textContent = todo.description;
+  description.className = "description";
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "X";
@@ -109,7 +124,9 @@ description.className = "description";
   deleteButton.addEventListener("click", () => deleteTodo(todo.id));
 
   const completeButton = document.createElement("button");
-  completeButton.textContent = todo.complete ? "Avmarkera klar" : "Markera klar";
+  completeButton.textContent = todo.complete
+    ? "Avmarkera klar"
+    : "Markera klar";
   completeButton.className = "completeButton";
   completeButton.addEventListener("click", () =>
     toggleComplete(todo.id, !todo.complete)
@@ -166,9 +183,14 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("description").value = "";
 
         fetchAndDisplayTodos();
+      } else if (response.status === 400) {
+        const { error } = await response.json();
+        alert(error);
       } else {
         console.log("Användaren är inte inloggad");
-        alert("Du måste vara inloggad för att publicera todos. Vänligen logga in");
+        alert(
+          "Du måste vara inloggad för att publicera todos. Vänligen logga in"
+        );
       }
     });
   }
