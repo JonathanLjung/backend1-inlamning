@@ -1,13 +1,14 @@
 const { pool } = require('../../db');
-const Joi = require('joi');
+const joi = require('joi');
 
 const editTodos = (req, res) => {
+  const user_id = req.userId;
   const { id } = req.params;
   const { title, description } = req.body;
 
-  const schema = Joi.object({
-    title: Joi.string().min(2).max(50).required(),
-    description: Joi.string().min(2).max(250).required(),
+  const schema = joi.object({
+    title: joi.string().min(2).max(50).required(),
+    description: joi.string().min(2).max(250).required(),
   });
 
   const { error } = schema.validate({ title, description });
@@ -19,9 +20,9 @@ const editTodos = (req, res) => {
   const updateTodo = `
     UPDATE todos
     SET title=?, description=?
-    WHERE id=?`;
+    WHERE id= ? AND user_id = ?`;
 
-  pool.execute(updateTodo, [title, description, id], (error, result) => {
+  pool.execute(updateTodo, [title, description, id, user_id], (error, result) => {
     if (error) {
       console.log(error);
       res.sendStatus(500);

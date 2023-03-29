@@ -11,6 +11,7 @@ const validateTodo = (data) => {
 };
 
 const completeTodos = (req, res) => {
+  const user_id = req.userId;
   const { id } = req.params;
   const { isComplete } = req.body;
 
@@ -25,13 +26,13 @@ const completeTodos = (req, res) => {
 
   pool.execute(
     updateTodoQuery,
-    [isComplete, id, req.userId],
+    [isComplete, id, user_id],
     (error, result) => {
       if (error) {
         console.log(error);
         res.sendStatus(500);
       } else if (result.affectedRows === 0) {
-        res.status(404).json({ error: "Kunde inte hitta To-do" });
+        res.status(404).json({ error: "Couldnt find todo" });
       } else {
         res.json({ success: true });
       }
