@@ -64,7 +64,7 @@ Här uppdaterar du din todo med json format:
 ```
 
 ### PUT /todos/:id/complete
-Här uppdaterar du din todos "complete", 1 för sant och 0 för falskt:
+Här uppdaterar du din todos "complete", true för sant & false för falskt:
 ```json
 {
     "isComplete": false eller true
