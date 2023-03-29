@@ -73,7 +73,7 @@ Här uppdaterar du din todos "complete", 1 för sant och 0 för falskt:
 ## För att använda clienten
 
 ```
-npm run client
+npm run client (om inte detta fungerar, vänligen öppna client/html/index.html via live server)
 ```
 
 ## Navigera på hemsidan
