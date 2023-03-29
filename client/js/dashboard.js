@@ -7,6 +7,7 @@ async function deleteTodo(todoId) {
 
     if (response.ok) {
       console.log("Todo deleted successfully");
+      alert('Todo deleted successfully')
       fetchAndDisplayTodos();
     } else {
       throw new Error("Error deleting todo");
@@ -32,7 +33,7 @@ async function editTodo(todoId, updatedData) {
       fetchAndDisplayTodos();
     } else if (response.status === 400) {
       const { error } = await response.json();
-      alert(`Valideringsfel: ${error}`);
+      alert(`Validation error: ${error}`);
     } else {
       throw new Error("Error updating todo");
     }
@@ -91,7 +92,7 @@ async function fetchAndDisplayTodos() {
       console.error(e.message);
     }
     if (error.message === "Error fetching todos" && response?.status === 401) {
-      alert("Du måste vara inloggad för att hämta todos. Vänligen logga in");
+      alert("You need to be logged in to get todos, please login");
     }
   }
 }
@@ -125,19 +126,19 @@ function createTodoItem(todo) {
 
   const completeButton = document.createElement("button");
   completeButton.textContent = todo.complete
-    ? "Avmarkera klar"
-    : "Markera klar";
+    ? "Uncheck done"
+    : "Check as done";
   completeButton.className = "completeButton";
   completeButton.addEventListener("click", () =>
     toggleComplete(todo.id, !todo.complete)
   );
 
   const editButton = document.createElement("button");
-  editButton.textContent = "Redigera";
+  editButton.textContent = "Edit";
   editButton.className = "editButton";
   editButton.addEventListener("click", () => {
-    const updatedTitle = prompt("Ange ny titel:", todo.title);
-    const updatedDescription = prompt("Ange ny beskrivning:", todo.description);
+    const updatedTitle = prompt("Assign new title:", todo.title);
+    const updatedDescription = prompt("Assign new description:", todo.description);
 
     if (updatedTitle && updatedDescription) {
       editTodo(todo.id, {
@@ -187,9 +188,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const { error } = await response.json();
         alert(error);
       } else {
-        console.log("Användaren är inte inloggad");
+        console.log("User is not logged in");
         alert(
-          "Du måste vara inloggad för att publicera todos. Vänligen logga in"
+          "You must be logged in to post todos. Please login"
         );
       }
     });
